@@ -136,7 +136,7 @@
     <elementParameter field="TEXT" name="PROXY_USERNAME" value="&quot;haku-itou&quot;"/>
     <elementParameter field="PASSWORD" name="PROXY_PASSWORD" value="a1A4I7mjZ5yjmPTG3jgcaHxGgH0sxtXu"/>
     <elementParameter field="CHECK" name="PROXY_NTLM" value="false"/>
-    <elementParameter field="TEXT" name="PROXY_DOMAIN" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PROXY_DOMAIN" value="&quot;github.com&quot;" show="false"/>
     <elementParameter field="CHECK" name="NEED_AUTH" value="true"/>
     <elementParameter field="TEXT" name="AUTH_USERNAME" value="&quot;hakuItou&quot;"/>
     <elementParameter field="PASSWORD" name="AUTH_PASSWORD" value="a1A4I7mjZ5yjmPTG3jgcaHxGgH0sxtXu"/>
