@@ -392,7 +392,7 @@
   <node componentName="tFileFetch" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="128" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileFetch_1" show="false"/>
     <elementParameter field="CLOSED_LIST" name="PROTO" value="https"/>
-    <elementParameter field="CHECK" name="POST" value="true"/>
+    <elementParameter field="CHECK" name="POST" value="false"/>
     <elementParameter field="TEXT" name="URI" value="&quot;https://github.com/hakuItou/TestTalend/blob/master/Book1.xlsx?raw=true&quot;"/>
     <elementParameter field="CHECK" name="USE_CACHE" value="false"/>
     <elementParameter field="TEXT" name="SMB_URI" value="&quot;smb://host/dir/remoteFileName.txt&quot;" show="false"/>
@@ -405,7 +405,7 @@
     <elementParameter field="TEXT" name="SMB_USERNAME" value="&quot;username&quot;" show="false"/>
     <elementParameter field="PASSWORD" name="SMB_PASSWORD" value="PoLvNyVG2XWndNDdLn696A==" show="false"/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
-    <elementParameter field="TABLE" name="COMMON_PARAMS"/>
+    <elementParameter field="TABLE" name="COMMON_PARAMS" show="false"/>
     <elementParameter field="CHECK" name="READ_COOKIE" value="false"/>
     <elementParameter field="CHECK" name="SAVE_COOKIE" value="false"/>
     <elementParameter field="FILE" name="COOKIE_DIR" value="&quot;C:/cookie&quot;" show="false"/>
@@ -414,7 +414,7 @@
     <elementParameter field="CHECK" name="ENCODE_URI" value="true"/>
     <elementParameter field="CHECK" name="PRINT" value="false"/>
     <elementParameter field="TEXT" name="TIMEOUT" value="30000"/>
-    <elementParameter field="CHECK" name="UPLOAD" value="false"/>
+    <elementParameter field="CHECK" name="UPLOAD" value="false" show="false"/>
     <elementParameter field="TABLE" name="FILE_PARAMS" show="false"/>
     <elementParameter field="CHECK" name="USE_PROXY" value="true"/>
     <elementParameter field="TEXT" name="PROXY_HOST" value="&quot;172.17.0.108&quot;"/>
@@ -422,7 +422,7 @@
     <elementParameter field="TEXT" name="PROXY_USERNAME" value="&quot;haku-itou&quot;"/>
     <elementParameter field="PASSWORD" name="PROXY_PASSWORD" value="a1A4I7mjZ5yjmPTG3jgcaHxGgH0sxtXu"/>
     <elementParameter field="CHECK" name="PROXY_NTLM" value="false"/>
-    <elementParameter field="TEXT" name="PROXY_DOMAIN" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PROXY_DOMAIN" value="&quot;github.com&quot;" show="false"/>
     <elementParameter field="CHECK" name="NEED_AUTH" value="true"/>
     <elementParameter field="TEXT" name="AUTH_USERNAME" value="&quot;hakuItou&quot;"/>
     <elementParameter field="PASSWORD" name="AUTH_PASSWORD" value="a1A4I7mjZ5yjmPTG3jgcaHxGgH0sxtXu"/>
@@ -482,6 +482,9 @@
   <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tBufferOutput_1" offsetLabelX="0" offsetLabelY="0" source="tBufferOutput_1" target="tLogRow_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row4" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileFetch_1" offsetLabelX="0" offsetLabelY="0" source="tFileFetch_1" target="tFileInputExcel_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk1" show="false"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputExcel_1" show="false"/>

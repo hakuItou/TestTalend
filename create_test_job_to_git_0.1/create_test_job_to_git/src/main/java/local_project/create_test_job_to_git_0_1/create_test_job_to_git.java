@@ -275,6 +275,15 @@ private class TalendException extends Exception {
 	}
 }
 
+			public void tFileFetch_1_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+				
+				end_Hash.put(errorComponent, System.currentTimeMillis());
+				
+				status = "failure";
+				
+					tFileFetch_1_onSubJobError(exception, errorComponent, globalMap);
+			}
+			
 			public void tFileInputExcel_1_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
 				
 				end_Hash.put(errorComponent, System.currentTimeMillis());
@@ -318,15 +327,6 @@ private class TalendException extends Exception {
 				status = "failure";
 				
 					tFileInputExcel_1_onSubJobError(exception, errorComponent, globalMap);
-			}
-			
-			public void tFileFetch_1_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
-				
-				end_Hash.put(errorComponent, System.currentTimeMillis());
-				
-				status = "failure";
-				
-					tFileFetch_1_onSubJobError(exception, errorComponent, globalMap);
 			}
 			
 			public void tDenormalize_1_DenormalizeOut_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
@@ -389,12 +389,12 @@ private class TalendException extends Exception {
 					talendMeter_METTER_onSubJobError(exception, errorComponent, globalMap);
 			}
 			
-			public void tFileInputExcel_1_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+			public void tFileFetch_1_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
 
 resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThread().getId()+ "", "FATAL", "", exception.getMessage(), ResumeUtil.getExceptionStackTrace(exception),"");
 
 			}
-			public void tFileFetch_1_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+			public void tFileInputExcel_1_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
 
 resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThread().getId()+ "", "FATAL", "", exception.getMessage(), ResumeUtil.getExceptionStackTrace(exception),"");
 
@@ -419,6 +419,402 @@ resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThrea
 
 
 
+
+public void tFileFetch_1Process(final java.util.Map<String, Object> globalMap) throws TalendException {
+	globalMap.put("tFileFetch_1_SUBPROCESS_STATE", 0);
+
+ final boolean execStat = this.execStat;
+	
+		String iterateId = "";
+	
+	
+	String currentComponent = "";
+	java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
+
+	try {
+			// TDI-39566 avoid throwing an useless Exception
+			boolean resumeIt = true;
+			if (globalResumeTicket == false && resumeEntryMethodName != null) {
+				String currentMethodName = new java.lang.Exception().getStackTrace()[0].getMethodName();
+				resumeIt = resumeEntryMethodName.equals(currentMethodName);
+			}
+			if (resumeIt || globalResumeTicket) { //start the resume
+				globalResumeTicket = true;
+
+
+
+		
+
+
+	
+	/**
+	 * [tFileFetch_1 begin ] start
+	 */
+
+	
+
+	
+		
+		ok_Hash.put("tFileFetch_1", false);
+		start_Hash.put("tFileFetch_1", System.currentTimeMillis());
+		
+	
+	currentComponent="tFileFetch_1";
+
+	
+		int tos_count_tFileFetch_1 = 0;
+		
+
+ 
+
+
+
+/**
+ * [tFileFetch_1 begin ] stop
+ */
+	
+	/**
+	 * [tFileFetch_1 main ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tFileFetch_1";
+
+	
+
+java.io.InputStream retIS_tFileFetch_1 = null;
+	
+	java.net.URI uriToFetch_tFileFetch_1 = null;
+	try {
+			java.net.URL url_tFileFetch_1 = new java.net.URL("https://github.com/hakuItou/TestTalend/blob/master/Book1.xlsx?raw=true");
+			uriToFetch_tFileFetch_1 = new java.net.URI(
+								url_tFileFetch_1.getProtocol(),
+								url_tFileFetch_1.getUserInfo(),
+								url_tFileFetch_1.getHost(),
+								url_tFileFetch_1.getPort(),
+								url_tFileFetch_1.getPath(),
+								url_tFileFetch_1.getQuery(),
+								url_tFileFetch_1.getRef());
+	} 
+	catch (Exception e) {
+			System.err.println("URI is not correct or not encoded, please input a valid one or use 'Encode URI' option");
+	}
+	
+	
+		class SocketFactory_tFileFetch_1 implements org.apache.commons.httpclient.protocol.SecureProtocolSocketFactory {
+
+			private javax.net.ssl.SSLContext sslcontext = null;
+
+			private javax.net.ssl.SSLContext createSSLContext() {
+				javax.net.ssl.SSLContext sslcontext = null;
+
+				try {
+					sslcontext = javax.net.ssl.SSLContext.getInstance("SSL");
+					sslcontext.init(null, new javax.net.ssl.TrustManager[] { new TrustAnyTrustManager() }, new java.security.SecureRandom());
+				} catch (java.security.NoSuchAlgorithmException e) {
+					
+					e.printStackTrace();
+				} catch (java.security.KeyManagementException e) {
+					
+					e.printStackTrace();
+				}
+				return sslcontext;
+			}
+
+			private javax.net.ssl.SSLContext getSSLContext() {
+
+				if (this.sslcontext == null) {
+					this.sslcontext = createSSLContext();
+				}
+				return this.sslcontext;
+			}
+
+			public java.net.Socket createSocket(java.net.Socket socket, String host, int port, boolean autoClose)
+				throws java.io.IOException, java.net.UnknownHostException {
+				return getSSLContext().getSocketFactory().createSocket(socket, host, port, autoClose);
+			}
+
+			public java.net.Socket createSocket(String host, int port) throws java.io.IOException, java.net.UnknownHostException {
+				return getSSLContext().getSocketFactory().createSocket(host, port);
+			}
+
+			public java.net.Socket createSocket(String host, int port, java.net.InetAddress clientHost, int clientPort)
+				throws java.io.IOException, java.net.UnknownHostException {
+				return getSSLContext().getSocketFactory().createSocket(host, port, clientHost, clientPort);
+			}
+
+			public java.net.Socket createSocket(String host, int port, java.net.InetAddress localAddress, int localPort, org.apache.commons.httpclient.params.HttpConnectionParams params) 
+				throws java.io.IOException, java.net.UnknownHostException, org.apache.commons.httpclient.ConnectTimeoutException {
+
+				if (params == null) {
+					throw new IllegalArgumentException("Parameters may not be null");
+				}
+				int timeout = params.getConnectionTimeout();
+				javax.net.SocketFactory socketfactory = getSSLContext().getSocketFactory();
+
+				if (timeout == 0) {
+					return socketfactory.createSocket(host, port, localAddress, localPort);
+				} else {
+					java.net.Socket socket = socketfactory.createSocket();
+					java.net.SocketAddress localaddr = new java.net.InetSocketAddress(localAddress, localPort);
+					java.net.SocketAddress remoteaddr = new java.net.InetSocketAddress(host, port);
+					socket.bind(localaddr);
+					socket.connect(remoteaddr, timeout);
+					return socket;
+				}
+			}
+
+			class TrustAnyTrustManager implements javax.net.ssl.X509TrustManager {
+				public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType)
+					throws java.security.cert.CertificateException {
+				}
+				public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType)
+					throws java.security.cert.CertificateException {
+				}
+				public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+					return new java.security.cert.X509Certificate[] {};
+				}
+			}
+		}
+
+			org.apache.commons.httpclient.protocol.Protocol myhttps = new org.apache.commons.httpclient.protocol.Protocol("https", new SocketFactory_tFileFetch_1(), 443);
+			org.apache.commons.httpclient.protocol.Protocol.registerProtocol("https", myhttps);
+	org.apache.commons.httpclient.HttpClient client_tFileFetch_1 = new org.apache.commons.httpclient.HttpClient();
+	
+	client_tFileFetch_1.getHttpConnectionManager().getParams().setConnectionTimeout(30000);
+	
+	client_tFileFetch_1.getParams().setCookiePolicy(org.apache.commons.httpclient.cookie.CookiePolicy.DEFAULT);
+	
+	 
+		client_tFileFetch_1.getHostConfiguration().setProxy("172.17.0.108", Integer.parseInt("80"));
+	        
+		
+		
+		 
+	final String decryptedPassword_tFileFetch_1 = routines.system.PasswordEncryptUtil.decryptPassword("cdbb1b64b1eb450490200fca296df4853cc8cc1ec77c37a6");
+	   	
+		
+			client_tFileFetch_1.getState().setProxyCredentials(
+			new org.apache.commons.httpclient.auth.AuthScope("172.17.0.108", Integer.parseInt("80"), null),
+			new org.apache.commons.httpclient.UsernamePasswordCredentials("haku-itou", decryptedPassword_tFileFetch_1));
+		
+		String decryptedPwd_tFileFetch_1 = routines.system.PasswordEncryptUtil.decryptPassword("cdbb1b64b1eb450490200fca296df4853cc8cc1ec77c37a6");
+		
+			client_tFileFetch_1.getState().setCredentials(org.apache.commons.httpclient.auth.AuthScope.ANY, new org.apache.commons.httpclient.UsernamePasswordCredentials("hakuItou", decryptedPwd_tFileFetch_1));
+		
+		org.apache.commons.httpclient.HttpMethod method_tFileFetch_1 = new org.apache.commons.httpclient.methods.GetMethod(uriToFetch_tFileFetch_1.toASCIIString());
+	
+	boolean isContinue_tFileFetch_1 = true;
+	int status_tFileFetch_1;
+	String finalURL_tFileFetch_1 = uriToFetch_tFileFetch_1.toASCIIString();
+
+	try { // B_01
+		
+			status_tFileFetch_1  = client_tFileFetch_1.executeMethod(method_tFileFetch_1);
+		
+			if (!(status_tFileFetch_1 == org.apache.commons.httpclient.HttpStatus.SC_OK)) {      
+				throw new java.lang.Exception("Method failed: " + method_tFileFetch_1.getStatusLine());
+			}
+		
+	} catch(java.lang.Exception e) {
+		
+			throw(e);
+		
+	}
+
+	if (isContinue_tFileFetch_1) {    
+		
+			java.io.InputStream in_tFileFetch_1 = method_tFileFetch_1.getResponseBodyAsStream();
+			String sDir_tFileFetch_1 = ("/var/lib/jenkins/workspace/TestTalendJob/").trim();
+			String fileName_tFileFetch_1 = ("Book1.xlsx").trim();    
+			//open directory
+			java.net.URL url_tFileFetch_1 = new java.net.URL(finalURL_tFileFetch_1);
+			String sURIPath_tFileFetch_1 = "";
+			int iLastSlashIndex_tFileFetch_1 = 0;
+			sURIPath_tFileFetch_1 = url_tFileFetch_1.getFile();
+			iLastSlashIndex_tFileFetch_1 = sURIPath_tFileFetch_1.lastIndexOf("/");
+
+			
+
+			// if not input file name, get the name from URI
+			if ("".equals(fileName_tFileFetch_1)) {      
+				if (iLastSlashIndex_tFileFetch_1 > 0 && (!sURIPath_tFileFetch_1.endsWith("/"))) {
+					fileName_tFileFetch_1 = sURIPath_tFileFetch_1.substring(iLastSlashIndex_tFileFetch_1 + 1);
+				} else {
+					fileName_tFileFetch_1 = "defaultfilename.txt";
+				}
+			}
+			java.io.File dir_tFileFetch_1 = new java.io.File(sDir_tFileFetch_1);
+
+			// pretreatment
+			try {
+				java.io.File test_file_tFileFetch_1 = new java.io.File(dir_tFileFetch_1, fileName_tFileFetch_1);
+				test_file_tFileFetch_1.getParentFile().mkdirs();
+
+				if (test_file_tFileFetch_1.createNewFile()) {
+					test_file_tFileFetch_1.delete();
+				}
+			} catch(java.lang.Exception e) {
+				
+				fileName_tFileFetch_1 = "defaultfilename.txt";
+			}
+			java.io.File file_tFileFetch_1 = new java.io.File(dir_tFileFetch_1, fileName_tFileFetch_1);
+			file_tFileFetch_1.getParentFile().mkdirs();    
+			java.io.FileOutputStream out_tFileFetch_1 = new java.io.FileOutputStream(file_tFileFetch_1);
+			byte[] buffer_tFileFetch_1 = new byte[1024];
+			int count_tFileFetch_1 = 0;
+
+			while ((count_tFileFetch_1 = in_tFileFetch_1.read(buffer_tFileFetch_1)) > 0) {
+				out_tFileFetch_1.write(buffer_tFileFetch_1, 0, count_tFileFetch_1);
+			}
+			// close opened object
+			in_tFileFetch_1.close();   
+			out_tFileFetch_1.close(); 
+			
+			method_tFileFetch_1.releaseConnection();
+			   
+		    
+	} // B_01
+globalMap.put("tFileFetch_1_INPUT_STREAM", retIS_tFileFetch_1);
+
+ 
+
+
+	tos_count_tFileFetch_1++;
+
+/**
+ * [tFileFetch_1 main ] stop
+ */
+	
+	/**
+	 * [tFileFetch_1 process_data_begin ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tFileFetch_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tFileFetch_1 process_data_begin ] stop
+ */
+	
+	/**
+	 * [tFileFetch_1 process_data_end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tFileFetch_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tFileFetch_1 process_data_end ] stop
+ */
+	
+	/**
+	 * [tFileFetch_1 end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tFileFetch_1";
+
+	
+
+ 
+
+ok_Hash.put("tFileFetch_1", true);
+end_Hash.put("tFileFetch_1", System.currentTimeMillis());
+
+
+
+
+/**
+ * [tFileFetch_1 end ] stop
+ */
+				}//end the resume
+
+				
+				    			if(resumeEntryMethodName == null || globalResumeTicket){
+				    				resumeUtil.addLog("CHECKPOINT", "CONNECTION:SUBJOB_OK:tFileFetch_1:OnSubjobOk", "", Thread.currentThread().getId() + "", "", "", "", "", "");
+								}	    				    			
+					    	
+								if(execStat){    	
+									runStat.updateStatOnConnection("OnSubjobOk1", 0, "ok");
+								} 
+							
+							tFileInputExcel_1Process(globalMap); 
+						
+
+
+
+	
+			}catch(java.lang.Exception e){	
+				
+				TalendException te = new TalendException(e, currentComponent, globalMap);
+				
+				throw te;
+			}catch(java.lang.Error error){	
+				
+					runStat.stopThreadStat();
+				
+				throw error;
+			}finally{
+				
+				try{
+					
+	
+	/**
+	 * [tFileFetch_1 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tFileFetch_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tFileFetch_1 finally ] stop
+ */
+				}catch(java.lang.Exception e){	
+					//ignore
+				}catch(java.lang.Error error){
+					//ignore
+				}
+				resourceMap = null;
+			}
+		
+
+		globalMap.put("tFileFetch_1_SUBPROCESS_STATE", 1);
+	}
+	
 
 
 public static class row4Struct implements routines.system.IPersistableRow<row4Struct> {
@@ -3828,394 +4224,6 @@ end_Hash.put("tLogRow_1", System.currentTimeMillis());
 	}
 	
 
-public void tFileFetch_1Process(final java.util.Map<String, Object> globalMap) throws TalendException {
-	globalMap.put("tFileFetch_1_SUBPROCESS_STATE", 0);
-
- final boolean execStat = this.execStat;
-	
-		String iterateId = "";
-	
-	
-	String currentComponent = "";
-	java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
-
-	try {
-			// TDI-39566 avoid throwing an useless Exception
-			boolean resumeIt = true;
-			if (globalResumeTicket == false && resumeEntryMethodName != null) {
-				String currentMethodName = new java.lang.Exception().getStackTrace()[0].getMethodName();
-				resumeIt = resumeEntryMethodName.equals(currentMethodName);
-			}
-			if (resumeIt || globalResumeTicket) { //start the resume
-				globalResumeTicket = true;
-
-
-
-
-
-	
-	/**
-	 * [tFileFetch_1 begin ] start
-	 */
-
-	
-
-	
-		
-		ok_Hash.put("tFileFetch_1", false);
-		start_Hash.put("tFileFetch_1", System.currentTimeMillis());
-		
-	
-	currentComponent="tFileFetch_1";
-
-	
-		int tos_count_tFileFetch_1 = 0;
-		
-
- 
-
-
-
-/**
- * [tFileFetch_1 begin ] stop
- */
-	
-	/**
-	 * [tFileFetch_1 main ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tFileFetch_1";
-
-	
-
-java.io.InputStream retIS_tFileFetch_1 = null;
-	
-	java.net.URI uriToFetch_tFileFetch_1 = null;
-	try {
-			java.net.URL url_tFileFetch_1 = new java.net.URL("https://github.com/hakuItou/TestTalend/blob/master/Book1.xlsx?raw=true");
-			uriToFetch_tFileFetch_1 = new java.net.URI(
-								url_tFileFetch_1.getProtocol(),
-								url_tFileFetch_1.getUserInfo(),
-								url_tFileFetch_1.getHost(),
-								url_tFileFetch_1.getPort(),
-								url_tFileFetch_1.getPath(),
-								url_tFileFetch_1.getQuery(),
-								url_tFileFetch_1.getRef());
-	} 
-	catch (Exception e) {
-			System.err.println("URI is not correct or not encoded, please input a valid one or use 'Encode URI' option");
-	}
-	
-	
-		class SocketFactory_tFileFetch_1 implements org.apache.commons.httpclient.protocol.SecureProtocolSocketFactory {
-
-			private javax.net.ssl.SSLContext sslcontext = null;
-
-			private javax.net.ssl.SSLContext createSSLContext() {
-				javax.net.ssl.SSLContext sslcontext = null;
-
-				try {
-					sslcontext = javax.net.ssl.SSLContext.getInstance("SSL");
-					sslcontext.init(null, new javax.net.ssl.TrustManager[] { new TrustAnyTrustManager() }, new java.security.SecureRandom());
-				} catch (java.security.NoSuchAlgorithmException e) {
-					
-					e.printStackTrace();
-				} catch (java.security.KeyManagementException e) {
-					
-					e.printStackTrace();
-				}
-				return sslcontext;
-			}
-
-			private javax.net.ssl.SSLContext getSSLContext() {
-
-				if (this.sslcontext == null) {
-					this.sslcontext = createSSLContext();
-				}
-				return this.sslcontext;
-			}
-
-			public java.net.Socket createSocket(java.net.Socket socket, String host, int port, boolean autoClose)
-				throws java.io.IOException, java.net.UnknownHostException {
-				return getSSLContext().getSocketFactory().createSocket(socket, host, port, autoClose);
-			}
-
-			public java.net.Socket createSocket(String host, int port) throws java.io.IOException, java.net.UnknownHostException {
-				return getSSLContext().getSocketFactory().createSocket(host, port);
-			}
-
-			public java.net.Socket createSocket(String host, int port, java.net.InetAddress clientHost, int clientPort)
-				throws java.io.IOException, java.net.UnknownHostException {
-				return getSSLContext().getSocketFactory().createSocket(host, port, clientHost, clientPort);
-			}
-
-			public java.net.Socket createSocket(String host, int port, java.net.InetAddress localAddress, int localPort, org.apache.commons.httpclient.params.HttpConnectionParams params) 
-				throws java.io.IOException, java.net.UnknownHostException, org.apache.commons.httpclient.ConnectTimeoutException {
-
-				if (params == null) {
-					throw new IllegalArgumentException("Parameters may not be null");
-				}
-				int timeout = params.getConnectionTimeout();
-				javax.net.SocketFactory socketfactory = getSSLContext().getSocketFactory();
-
-				if (timeout == 0) {
-					return socketfactory.createSocket(host, port, localAddress, localPort);
-				} else {
-					java.net.Socket socket = socketfactory.createSocket();
-					java.net.SocketAddress localaddr = new java.net.InetSocketAddress(localAddress, localPort);
-					java.net.SocketAddress remoteaddr = new java.net.InetSocketAddress(host, port);
-					socket.bind(localaddr);
-					socket.connect(remoteaddr, timeout);
-					return socket;
-				}
-			}
-
-			class TrustAnyTrustManager implements javax.net.ssl.X509TrustManager {
-				public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType)
-					throws java.security.cert.CertificateException {
-				}
-				public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType)
-					throws java.security.cert.CertificateException {
-				}
-				public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-					return new java.security.cert.X509Certificate[] {};
-				}
-			}
-		}
-
-			org.apache.commons.httpclient.protocol.Protocol myhttps = new org.apache.commons.httpclient.protocol.Protocol("https", new SocketFactory_tFileFetch_1(), 443);
-			org.apache.commons.httpclient.protocol.Protocol.registerProtocol("https", myhttps);
-	org.apache.commons.httpclient.HttpClient client_tFileFetch_1 = new org.apache.commons.httpclient.HttpClient();
-	
-	client_tFileFetch_1.getHttpConnectionManager().getParams().setConnectionTimeout(30000);
-	
-	client_tFileFetch_1.getParams().setCookiePolicy(org.apache.commons.httpclient.cookie.CookiePolicy.DEFAULT);
-	
-	 
-		client_tFileFetch_1.getHostConfiguration().setProxy("172.17.0.108", Integer.parseInt("80"));
-	        
-		
-		
-		 
-	final String decryptedPassword_tFileFetch_1 = routines.system.PasswordEncryptUtil.decryptPassword("cdbb1b64b1eb450490200fca296df4853cc8cc1ec77c37a6");
-	   	
-		
-			client_tFileFetch_1.getState().setProxyCredentials(
-			new org.apache.commons.httpclient.auth.AuthScope("172.17.0.108", Integer.parseInt("80"), null),
-			new org.apache.commons.httpclient.UsernamePasswordCredentials("haku-itou", decryptedPassword_tFileFetch_1));
-		
-		String decryptedPwd_tFileFetch_1 = routines.system.PasswordEncryptUtil.decryptPassword("cdbb1b64b1eb450490200fca296df4853cc8cc1ec77c37a6");
-		
-			client_tFileFetch_1.getState().setCredentials(org.apache.commons.httpclient.auth.AuthScope.ANY, new org.apache.commons.httpclient.UsernamePasswordCredentials("hakuItou", decryptedPwd_tFileFetch_1));
-		
-		org.apache.commons.httpclient.HttpMethod method_tFileFetch_1 = new org.apache.commons.httpclient.methods.PostMethod(uriToFetch_tFileFetch_1.toASCIIString());
-		
-		org.apache.commons.httpclient.methods.multipart.Part[] parts_tFileFetch_1 = new org.apache.commons.httpclient.methods.multipart.Part[]{};    
-		((org.apache.commons.httpclient.methods.PostMethod)method_tFileFetch_1).setRequestEntity(new org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity(parts_tFileFetch_1, method_tFileFetch_1.getParams()));
-	
-	boolean isContinue_tFileFetch_1 = true;
-	int status_tFileFetch_1;
-	String finalURL_tFileFetch_1 = uriToFetch_tFileFetch_1.toASCIIString();
-
-	try { // B_01
-		
-			status_tFileFetch_1  = client_tFileFetch_1.executeMethod(method_tFileFetch_1);
-		
-			if (!(status_tFileFetch_1 == org.apache.commons.httpclient.HttpStatus.SC_OK)) {      
-				throw new java.lang.Exception("Method failed: " + method_tFileFetch_1.getStatusLine());
-			}
-		
-	} catch(java.lang.Exception e) {
-		
-			throw(e);
-		
-	}
-
-	if (isContinue_tFileFetch_1) {    
-		
-			java.io.InputStream in_tFileFetch_1 = method_tFileFetch_1.getResponseBodyAsStream();
-			String sDir_tFileFetch_1 = ("/var/lib/jenkins/workspace/TestTalendJob/").trim();
-			String fileName_tFileFetch_1 = ("Book1.xlsx").trim();    
-			//open directory
-			java.net.URL url_tFileFetch_1 = new java.net.URL(finalURL_tFileFetch_1);
-			String sURIPath_tFileFetch_1 = "";
-			int iLastSlashIndex_tFileFetch_1 = 0;
-			sURIPath_tFileFetch_1 = url_tFileFetch_1.getFile();
-			iLastSlashIndex_tFileFetch_1 = sURIPath_tFileFetch_1.lastIndexOf("/");
-
-			
-
-			// if not input file name, get the name from URI
-			if ("".equals(fileName_tFileFetch_1)) {      
-				if (iLastSlashIndex_tFileFetch_1 > 0 && (!sURIPath_tFileFetch_1.endsWith("/"))) {
-					fileName_tFileFetch_1 = sURIPath_tFileFetch_1.substring(iLastSlashIndex_tFileFetch_1 + 1);
-				} else {
-					fileName_tFileFetch_1 = "defaultfilename.txt";
-				}
-			}
-			java.io.File dir_tFileFetch_1 = new java.io.File(sDir_tFileFetch_1);
-
-			// pretreatment
-			try {
-				java.io.File test_file_tFileFetch_1 = new java.io.File(dir_tFileFetch_1, fileName_tFileFetch_1);
-				test_file_tFileFetch_1.getParentFile().mkdirs();
-
-				if (test_file_tFileFetch_1.createNewFile()) {
-					test_file_tFileFetch_1.delete();
-				}
-			} catch(java.lang.Exception e) {
-				
-				fileName_tFileFetch_1 = "defaultfilename.txt";
-			}
-			java.io.File file_tFileFetch_1 = new java.io.File(dir_tFileFetch_1, fileName_tFileFetch_1);
-			file_tFileFetch_1.getParentFile().mkdirs();    
-			java.io.FileOutputStream out_tFileFetch_1 = new java.io.FileOutputStream(file_tFileFetch_1);
-			byte[] buffer_tFileFetch_1 = new byte[1024];
-			int count_tFileFetch_1 = 0;
-
-			while ((count_tFileFetch_1 = in_tFileFetch_1.read(buffer_tFileFetch_1)) > 0) {
-				out_tFileFetch_1.write(buffer_tFileFetch_1, 0, count_tFileFetch_1);
-			}
-			// close opened object
-			in_tFileFetch_1.close();   
-			out_tFileFetch_1.close(); 
-			
-			method_tFileFetch_1.releaseConnection();
-			   
-		    
-	} // B_01
-globalMap.put("tFileFetch_1_INPUT_STREAM", retIS_tFileFetch_1);
-
- 
-
-
-	tos_count_tFileFetch_1++;
-
-/**
- * [tFileFetch_1 main ] stop
- */
-	
-	/**
-	 * [tFileFetch_1 process_data_begin ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tFileFetch_1";
-
-	
-
- 
-
-
-
-/**
- * [tFileFetch_1 process_data_begin ] stop
- */
-	
-	/**
-	 * [tFileFetch_1 process_data_end ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tFileFetch_1";
-
-	
-
- 
-
-
-
-/**
- * [tFileFetch_1 process_data_end ] stop
- */
-	
-	/**
-	 * [tFileFetch_1 end ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tFileFetch_1";
-
-	
-
- 
-
-ok_Hash.put("tFileFetch_1", true);
-end_Hash.put("tFileFetch_1", System.currentTimeMillis());
-
-
-
-
-/**
- * [tFileFetch_1 end ] stop
- */
-				}//end the resume
-
-				
-
-
-
-	
-			}catch(java.lang.Exception e){	
-				
-				TalendException te = new TalendException(e, currentComponent, globalMap);
-				
-				throw te;
-			}catch(java.lang.Error error){	
-				
-					runStat.stopThreadStat();
-				
-				throw error;
-			}finally{
-				
-				try{
-					
-	
-	/**
-	 * [tFileFetch_1 finally ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tFileFetch_1";
-
-	
-
- 
-
-
-
-/**
- * [tFileFetch_1 finally ] stop
- */
-				}catch(java.lang.Exception e){	
-					//ignore
-				}catch(java.lang.Error error){
-					//ignore
-				}
-				resourceMap = null;
-			}
-		
-
-		globalMap.put("tFileFetch_1_SUBPROCESS_STATE", 1);
-	}
-	
-
 
 public static class row_talendStats_STATSStruct implements routines.system.IPersistableRow<row_talendStats_STATSStruct> {
     final static byte[] commonByteArrayLock_LOCAL_PROJECT_create_test_job_to_git = new byte[0];
@@ -7215,15 +7223,6 @@ this.globalResumeTicket = true;//to run tPreJob
 this.globalResumeTicket = false;//to run others jobs
 
 try {
-errorCode = null;tFileInputExcel_1Process(globalMap);
-if(!"failure".equals(status)) { status = "end"; }
-}catch (TalendException e_tFileInputExcel_1) {
-globalMap.put("tFileInputExcel_1_SUBPROCESS_STATE", -1);
-
-e_tFileInputExcel_1.printStackTrace();
-
-}
-try {
 errorCode = null;tFileFetch_1Process(globalMap);
 if(!"failure".equals(status)) { status = "end"; }
 }catch (TalendException e_tFileFetch_1) {
@@ -7409,6 +7408,6 @@ if (execStat) {
     ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- *     182351 characters generated by Talend Open Studio for Data Integration 
- *     on the 2019/06/17 17:24:03 JST
+ *     182157 characters generated by Talend Open Studio for Data Integration 
+ *     on the 2019/06/17 17:41:05 JST
  ************************************************************************************************/
