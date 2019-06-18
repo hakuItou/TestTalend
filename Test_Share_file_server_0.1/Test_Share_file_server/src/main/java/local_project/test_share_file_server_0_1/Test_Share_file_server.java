@@ -275,6 +275,15 @@ private class TalendException extends Exception {
 	}
 }
 
+			public void tFileFetch_1_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+				
+				end_Hash.put(errorComponent, System.currentTimeMillis());
+				
+				status = "failure";
+				
+					tFileFetch_1_onSubJobError(exception, errorComponent, globalMap);
+			}
+			
 			public void tFileInputExcel_1_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
 				
 				end_Hash.put(errorComponent, System.currentTimeMillis());
@@ -380,6 +389,11 @@ private class TalendException extends Exception {
 					talendMeter_METTER_onSubJobError(exception, errorComponent, globalMap);
 			}
 			
+			public void tFileFetch_1_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+
+resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThread().getId()+ "", "FATAL", "", exception.getMessage(), ResumeUtil.getExceptionStackTrace(exception),"");
+
+			}
 			public void tFileInputExcel_1_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
 
 resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThread().getId()+ "", "FATAL", "", exception.getMessage(), ResumeUtil.getExceptionStackTrace(exception),"");
@@ -405,6 +419,253 @@ resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThrea
 
 
 
+
+public void tFileFetch_1Process(final java.util.Map<String, Object> globalMap) throws TalendException {
+	globalMap.put("tFileFetch_1_SUBPROCESS_STATE", 0);
+
+ final boolean execStat = this.execStat;
+	
+		String iterateId = "";
+	
+	
+	String currentComponent = "";
+	java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
+
+	try {
+			// TDI-39566 avoid throwing an useless Exception
+			boolean resumeIt = true;
+			if (globalResumeTicket == false && resumeEntryMethodName != null) {
+				String currentMethodName = new java.lang.Exception().getStackTrace()[0].getMethodName();
+				resumeIt = resumeEntryMethodName.equals(currentMethodName);
+			}
+			if (resumeIt || globalResumeTicket) { //start the resume
+				globalResumeTicket = true;
+
+
+
+		
+
+
+	
+	/**
+	 * [tFileFetch_1 begin ] start
+	 */
+
+	
+
+	
+		
+		ok_Hash.put("tFileFetch_1", false);
+		start_Hash.put("tFileFetch_1", System.currentTimeMillis());
+		
+	
+	currentComponent="tFileFetch_1";
+
+	
+		int tos_count_tFileFetch_1 = 0;
+		
+
+ 
+
+
+
+/**
+ * [tFileFetch_1 begin ] stop
+ */
+	
+	/**
+	 * [tFileFetch_1 main ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tFileFetch_1";
+
+	
+
+java.io.InputStream retIS_tFileFetch_1 = null;
+     
+	String srcurl_tFileFetch_1 = "smb://172.16.0.202/Share/Book1.xlsx";
+	String fileName_tFileFetch_1 = "Book1.xlsx";
+	String username_tFileFetch_1 = "dnsoft";
+	        
+	
+	
+	 
+	final String decryptedPassword_tFileFetch_1 = routines.system.PasswordEncryptUtil.decryptPassword("6450f62e41c7c4af");
+   	
+	String password_tFileFetch_1 = decryptedPassword_tFileFetch_1;
+
+	if (fileName_tFileFetch_1.compareTo("") == 0) {
+		fileName_tFileFetch_1 = srcurl_tFileFetch_1.substring(srcurl_tFileFetch_1.lastIndexOf("/"));
+	}
+	
+	if (username_tFileFetch_1.compareTo("") == 0) {
+		username_tFileFetch_1 = null;
+	}
+	
+	if (password_tFileFetch_1.compareTo("") == 0) {
+		password_tFileFetch_1 = null;
+	}
+	
+	try {        
+		jcifs.smb.NtlmPasswordAuthentication auth_tFileFetch_1 = new jcifs.smb.NtlmPasswordAuthentication("domain", username_tFileFetch_1, password_tFileFetch_1);
+		jcifs.smb.SmbFile sf_tFileFetch_1 = new jcifs.smb.SmbFile(srcurl_tFileFetch_1, auth_tFileFetch_1);
+	
+		
+			jcifs.smb.SmbFileInputStream in_tFileFetch_1 = new jcifs.smb.SmbFileInputStream(sf_tFileFetch_1);
+			java.io.File destFile_tFileFetch_1 = new java.io.File("/var/lib/jenkins/workspace/TestShareServerFileJob/Test_Share_file_server_0.1/", fileName_tFileFetch_1);
+			destFile_tFileFetch_1.getParentFile().mkdirs();
+			java.io.OutputStream out_tFileFetch_1 = new java.io.FileOutputStream(destFile_tFileFetch_1);
+			byte[] buf_tFileFetch_1 = new byte[1024];
+			int len_tFileFetch_1;
+	
+			while ((len_tFileFetch_1 = in_tFileFetch_1.read(buf_tFileFetch_1)) > 0) {
+				out_tFileFetch_1.write(buf_tFileFetch_1, 0, len_tFileFetch_1);
+			}
+			in_tFileFetch_1.close();
+			out_tFileFetch_1.close();
+			} catch (java.io.FileNotFoundException ex) {
+				
+				System.err.println(ex.getMessage());
+		 
+	} catch (java.lang.Exception e) {
+		
+		System.err.println(e.getMessage());
+	}
+globalMap.put("tFileFetch_1_INPUT_STREAM", retIS_tFileFetch_1);
+
+ 
+
+
+	tos_count_tFileFetch_1++;
+
+/**
+ * [tFileFetch_1 main ] stop
+ */
+	
+	/**
+	 * [tFileFetch_1 process_data_begin ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tFileFetch_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tFileFetch_1 process_data_begin ] stop
+ */
+	
+	/**
+	 * [tFileFetch_1 process_data_end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tFileFetch_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tFileFetch_1 process_data_end ] stop
+ */
+	
+	/**
+	 * [tFileFetch_1 end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tFileFetch_1";
+
+	
+
+ 
+
+ok_Hash.put("tFileFetch_1", true);
+end_Hash.put("tFileFetch_1", System.currentTimeMillis());
+
+				if(execStat){   
+   	 				runStat.updateStatOnConnection("OnComponentOk1", 0, "ok");
+				}
+				tFileInputExcel_1Process(globalMap);
+
+
+
+/**
+ * [tFileFetch_1 end ] stop
+ */
+				}//end the resume
+
+				
+
+
+
+	
+			}catch(java.lang.Exception e){	
+				
+				TalendException te = new TalendException(e, currentComponent, globalMap);
+				
+				throw te;
+			}catch(java.lang.Error error){	
+				
+					runStat.stopThreadStat();
+				
+				throw error;
+			}finally{
+				
+				try{
+					
+	
+	/**
+	 * [tFileFetch_1 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tFileFetch_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tFileFetch_1 finally ] stop
+ */
+				}catch(java.lang.Exception e){	
+					//ignore
+				}catch(java.lang.Error error){
+					//ignore
+				}
+				resourceMap = null;
+			}
+		
+
+		globalMap.put("tFileFetch_1_SUBPROCESS_STATE", 1);
+	}
+	
 
 
 public static class row4Struct implements routines.system.IPersistableRow<row4Struct> {
@@ -1945,7 +2206,7 @@ denormalize_4Struct denormalize_4_tmp = new denormalize_4Struct();
 			}
 		RegexUtil_tFileInputExcel_1 regexUtil_tFileInputExcel_1 = new RegexUtil_tFileInputExcel_1();
 
-		Object source_tFileInputExcel_1 = "//172.16.0.202//Share//Book1.xlsx";
+		Object source_tFileInputExcel_1 = "/var/lib/jenkins/workspace/TestShareServerFileJob/Test_Share_file_server_0.1/Book1.xlsx";
 		org.apache.poi.xssf.usermodel.XSSFWorkbook workbook_tFileInputExcel_1 = null;
 
 		if(source_tFileInputExcel_1 instanceof String){
@@ -6813,12 +7074,12 @@ this.globalResumeTicket = true;//to run tPreJob
 this.globalResumeTicket = false;//to run others jobs
 
 try {
-errorCode = null;tFileInputExcel_1Process(globalMap);
+errorCode = null;tFileFetch_1Process(globalMap);
 if(!"failure".equals(status)) { status = "end"; }
-}catch (TalendException e_tFileInputExcel_1) {
-globalMap.put("tFileInputExcel_1_SUBPROCESS_STATE", -1);
+}catch (TalendException e_tFileFetch_1) {
+globalMap.put("tFileFetch_1_SUBPROCESS_STATE", -1);
 
-e_tFileInputExcel_1.printStackTrace();
+e_tFileFetch_1.printStackTrace();
 
 }
 
@@ -6998,6 +7259,6 @@ if (execStat) {
     ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- *     170217 characters generated by Talend Open Studio for Data Integration 
- *     on the 2019/06/18 15:17:20 JST
+ *     175642 characters generated by Talend Open Studio for Data Integration 
+ *     on the 2019/06/18 17:35:02 JST
  ************************************************************************************************/
