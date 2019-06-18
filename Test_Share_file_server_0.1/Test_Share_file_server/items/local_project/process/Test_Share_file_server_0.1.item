@@ -402,8 +402,8 @@
     <elementParameter field="CHECK" name="ADD_HEADER" value="false" show="false"/>
     <elementParameter field="TABLE" name="HEADERS" show="false"/>
     <elementParameter field="TEXT" name="SMB_DOMAIN" value="&quot;domain&quot;"/>
-    <elementParameter field="TEXT" name="SMB_USERNAME" value="&quot;dnsoft&quot;"/>
-    <elementParameter field="PASSWORD" name="SMB_PASSWORD" value="PrOFMjn/lyNsRlcGr1qq/A=="/>
+    <elementParameter field="TEXT" name="SMB_USERNAME" value="&quot;&quot;"/>
+    <elementParameter field="PASSWORD" name="SMB_PASSWORD" value="0RMsyjmybrE="/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true" show="false"/>
     <elementParameter field="TABLE" name="COMMON_PARAMS" show="false"/>
     <elementParameter field="CHECK" name="READ_COOKIE" value="false"/>
