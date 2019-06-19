@@ -110,7 +110,7 @@
     <elementParameter field="TEXT" name="URI" value="&quot;http://talendforge.org/file_fetch.txt&quot;" show="false"/>
     <elementParameter field="CHECK" name="USE_CACHE" value="false"/>
     <elementParameter field="TEXT" name="SMB_URI" value="&quot;smb://172.16.0.202/Share/Book1.xlsx&quot;"/>
-    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;./test_output_to_fileServer_0.1/&quot;"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;/var/lib/jenkins/workspace/TestUploadFile/test_output_to_fileServer_0.1/&quot;"/>
     <elementParameter field="CHECK" name="MAKEDIRS" value="false" show="false"/>
     <elementParameter field="TEXT" name="FILENAME" value="&quot;Book1.xlsx&quot;"/>
     <elementParameter field="CHECK" name="ADD_HEADER" value="false" show="false"/>
@@ -148,7 +148,7 @@
   <node componentName="tFileInputExcel" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputExcel_1" show="false"/>
     <elementParameter field="CHECK" name="VERSION_2007" value="true"/>
-    <elementParameter field="FILE" name="FILENAME" value="&quot;./test_output_to_fileServer_0.1/Book1.xlsx&quot;"/>
+    <elementParameter field="FILE" name="FILENAME" value="&quot;/var/lib/jenkins/workspace/TestUploadFile/test_output_to_fileServer_0.1/Book1.xlsx&quot;"/>
     <elementParameter field="CHECK" name="ALL_SHEETS" value="false"/>
     <elementParameter field="TABLE" name="SHEETLIST">
       <elementValue elementRef="SHEETNAME" value="&quot;Sheet1&quot;"/>
@@ -391,7 +391,7 @@
     <elementParameter field="CHECK" name="VERSION_2007" value="true"/>
     <elementParameter field="CHECK" name="USESTREAM" value="false"/>
     <elementParameter field="TEXT" name="STREAMNAME" value="outputStream" show="false"/>
-    <elementParameter field="FILE" name="FILENAME" value="&quot;./test_output_to_fileServer_0.1/OutDataTest.xls&quot;"/>
+    <elementParameter field="FILE" name="FILENAME" value="&quot;/var/lib/jenkins/workspace/TestUploadFile/test_output_to_fileServer_0.1/OutDataTest.xls&quot;"/>
     <elementParameter field="TEXT" name="SHEETNAME" value="&quot;Sheet1&quot;"/>
     <elementParameter field="CHECK" name="INCLUDEHEADER" value="true"/>
     <elementParameter field="CHECK" name="APPEND_FILE" value="false"/>
@@ -456,7 +456,7 @@
     <elementParameter field="PASSWORD" name="PASSPHRASE" value="wiXuUBxiyoc5L4zXsOuoEQ==" show="false"/>
     <elementParameter field="DIRECTORY" name="REMOTEDIR" value="&quot;/home/share&quot;"/>
     <elementParameter field="TABLE" name="FILELIST">
-      <elementValue elementRef="SOURCE" value="&quot;./test_output_to_fileServer_0.1/OutDataTest.xls&quot;"/>
+      <elementValue elementRef="SOURCE" value="&quot;/var/lib/jenkins/workspace/TestUploadFile/test_output_to_fileServer_0.1/OutDataTest.xls&quot;"/>
     </elementParameter>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="denornalize" name="tSCPPut_1">
