@@ -335,7 +335,7 @@ private class TalendException extends Exception {
 				
 				status = "failure";
 				
-					tFileInputExcel_1_onSubJobError(exception, errorComponent, globalMap);
+					tSCPPut_1_onSubJobError(exception, errorComponent, globalMap);
 			}
 			
 			public void tDenormalize_1_DenormalizeOut_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
@@ -404,6 +404,11 @@ resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThrea
 
 			}
 			public void tFileInputExcel_1_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+
+resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThread().getId()+ "", "FATAL", "", exception.getMessage(), ResumeUtil.getExceptionStackTrace(exception),"");
+
+			}
+			public void tSCPPut_1_onSubJobError(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
 
 resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThread().getId()+ "", "FATAL", "", exception.getMessage(), ResumeUtil.getExceptionStackTrace(exception),"");
 
@@ -676,227 +681,6 @@ end_Hash.put("tFileFetch_1", System.currentTimeMillis());
 	}
 	
 
-
-public static class row5Struct implements routines.system.IPersistableRow<row5Struct> {
-    final static byte[] commonByteArrayLock_LOCAL_PROJECT_test_output_to_fileServer = new byte[0];
-    static byte[] commonByteArray_LOCAL_PROJECT_test_output_to_fileServer = new byte[0];
-
-	
-			    public String B;
-
-				public String getB () {
-					return this.B;
-				}
-				
-			    public String C;
-
-				public String getC () {
-					return this.C;
-				}
-				
-			    public String D;
-
-				public String getD () {
-					return this.D;
-				}
-				
-			    public String E;
-
-				public String getE () {
-					return this.E;
-				}
-				
-			    public String project;
-
-				public String getProject () {
-					return this.project;
-				}
-				
-			    public String tracker;
-
-				public String getTracker () {
-					return this.tracker;
-				}
-				
-			    public String attributes;
-
-				public String getAttributes () {
-					return this.attributes;
-				}
-				
-			    public String attributeValues;
-
-				public String getAttributeValues () {
-					return this.attributeValues;
-				}
-				
-
-
-
-	private String readString(ObjectInputStream dis) throws IOException{
-		String strReturn = null;
-		int length = 0;
-        length = dis.readInt();
-		if (length == -1) {
-			strReturn = null;
-		} else {
-			if(length > commonByteArray_LOCAL_PROJECT_test_output_to_fileServer.length) {
-				if(length < 1024 && commonByteArray_LOCAL_PROJECT_test_output_to_fileServer.length == 0) {
-   					commonByteArray_LOCAL_PROJECT_test_output_to_fileServer = new byte[1024];
-				} else {
-   					commonByteArray_LOCAL_PROJECT_test_output_to_fileServer = new byte[2 * length];
-   				}
-			}
-			dis.readFully(commonByteArray_LOCAL_PROJECT_test_output_to_fileServer, 0, length);
-			strReturn = new String(commonByteArray_LOCAL_PROJECT_test_output_to_fileServer, 0, length, utf8Charset);
-		}
-		return strReturn;
-	}
-
-    private void writeString(String str, ObjectOutputStream dos) throws IOException{
-		if(str == null) {
-            dos.writeInt(-1);
-		} else {
-            byte[] byteArray = str.getBytes(utf8Charset);
-	    	dos.writeInt(byteArray.length);
-			dos.write(byteArray);
-    	}
-    }
-
-    public void readData(ObjectInputStream dis) {
-
-		synchronized(commonByteArrayLock_LOCAL_PROJECT_test_output_to_fileServer) {
-
-        	try {
-
-        		int length = 0;
-		
-					this.B = readString(dis);
-					
-					this.C = readString(dis);
-					
-					this.D = readString(dis);
-					
-					this.E = readString(dis);
-					
-					this.project = readString(dis);
-					
-					this.tracker = readString(dis);
-					
-					this.attributes = readString(dis);
-					
-					this.attributeValues = readString(dis);
-					
-        	} catch (IOException e) {
-	            throw new RuntimeException(e);
-
-		
-
-        }
-
-		
-
-      }
-
-
-    }
-
-    public void writeData(ObjectOutputStream dos) {
-        try {
-
-		
-					// String
-				
-						writeString(this.B,dos);
-					
-					// String
-				
-						writeString(this.C,dos);
-					
-					// String
-				
-						writeString(this.D,dos);
-					
-					// String
-				
-						writeString(this.E,dos);
-					
-					// String
-				
-						writeString(this.project,dos);
-					
-					// String
-				
-						writeString(this.tracker,dos);
-					
-					// String
-				
-						writeString(this.attributes,dos);
-					
-					// String
-				
-						writeString(this.attributeValues,dos);
-					
-        	} catch (IOException e) {
-	            throw new RuntimeException(e);
-        }
-
-
-    }
-
-
-    public String toString() {
-
-		StringBuilder sb = new StringBuilder();
-		sb.append(super.toString());
-		sb.append("[");
-		sb.append("B="+B);
-		sb.append(",C="+C);
-		sb.append(",D="+D);
-		sb.append(",E="+E);
-		sb.append(",project="+project);
-		sb.append(",tracker="+tracker);
-		sb.append(",attributes="+attributes);
-		sb.append(",attributeValues="+attributeValues);
-	    sb.append("]");
-
-	    return sb.toString();
-    }
-
-    /**
-     * Compare keys
-     */
-    public int compareTo(row5Struct other) {
-
-		int returnValue = -1;
-		
-	    return returnValue;
-    }
-
-
-    private int checkNullsAndCompare(Object object1, Object object2) {
-        int returnValue = 0;
-		if (object1 instanceof Comparable && object2 instanceof Comparable) {
-            returnValue = ((Comparable) object1).compareTo(object2);
-        } else if (object1 != null && object2 != null) {
-            returnValue = compareStrings(object1.toString(), object2.toString());
-        } else if (object1 == null && object2 != null) {
-            returnValue = 1;
-        } else if (object1 != null && object2 == null) {
-            returnValue = -1;
-        } else {
-            returnValue = 0;
-        }
-
-        return returnValue;
-    }
-
-    private int compareStrings(String string1, String string2) {
-        return string1.compareTo(string2);
-    }
-
-
-}
 
 public static class row4Struct implements routines.system.IPersistableRow<row4Struct> {
     final static byte[] commonByteArrayLock_LOCAL_PROJECT_test_output_to_fileServer = new byte[0];
@@ -2239,7 +2023,6 @@ denormalize_4Struct denormalize_4 = new denormalize_4Struct();
 row2Struct row2 = new row2Struct();
 row3Struct row3 = new row3Struct();
 row3Struct row4 = row3;
-row3Struct row5 = row3;
 
 
 
@@ -3220,81 +3003,6 @@ end_Hash.put("tDenormalize_1_DenormalizeOut", System.currentTimeMillis());
 
 
 
-
-	
-	/**
-	 * [tSCPPut_1 begin ] start
-	 */
-
-	
-
-	
-		
-		ok_Hash.put("tSCPPut_1", false);
-		start_Hash.put("tSCPPut_1", System.currentTimeMillis());
-		
-	
-	currentComponent="tSCPPut_1";
-
-	
-			if (execStat) {
-				if(resourceMap.get("inIterateVComp") == null){
-					
-						runStat.updateStatOnConnection("row5" + iterateId, 0, 0);
-					
-				}
-			} 
-
-		
-		int tos_count_tSCPPut_1 = 0;
-		
-
- 
-	int nb_file_tSCPPut_1 = 0;
-	globalMap.put("tSCPPut_1_STATUS", "");
-    /* Create a connection instance */
-	
-	    String hostname_tSCPPut_1 = "172.16.0.202";
-	    String username_tSCPPut_1 = "dnsoft";
-			ch.ethz.ssh2.Connection conn_tSCPPut_1 = new ch.ethz.ssh2.Connection(hostname_tSCPPut_1,22);
-              /* Now connect */
-		
-        conn_tSCPPut_1.connect();
-		
-			
-			
-             
-	final String decryptedPassword_tSCPPut_1 = routines.system.PasswordEncryptUtil.decryptPassword("6450f62e41c7c4af");
-			
-			
-        	boolean isAuthenticated_tSCPPut_1 = conn_tSCPPut_1.authenticateWithPassword(username_tSCPPut_1, decryptedPassword_tSCPPut_1);
-        	if (isAuthenticated_tSCPPut_1 == false){
-            	throw new RuntimeException("Authentication failed.");
-        	}
-			
-        ch.ethz.ssh2.SCPClient scp_tSCPPut_1 = new  ch.ethz.ssh2.SCPClient(conn_tSCPPut_1);
-		
-        java.util.List<String> sourceList_tSCPPut_1 = new java.util.ArrayList<String>();
-			if((new java.io.File("/var/lib/jenkins/workspace/TestUploadFile/OutDataTest.xls").exists()) 
-			&& (new java.io.File("/var/lib/jenkins/workspace/TestUploadFile/OutDataTest.xls").isFile())){
-				sourceList_tSCPPut_1.add("/var/lib/jenkins/workspace/TestUploadFile/OutDataTest.xls");
-			}else{
-        }   
-		String[] sourceFileNames_tSCPPut_1 = new String[sourceList_tSCPPut_1.size()];
-        for(int i_tSCPPut_1 = 0;i_tSCPPut_1 < sourceList_tSCPPut_1.size(); i_tSCPPut_1++){
-        	sourceFileNames_tSCPPut_1[i_tSCPPut_1] = sourceList_tSCPPut_1.get(i_tSCPPut_1);
-        }
-
- 
-
-
-
-/**
- * [tSCPPut_1 begin ] stop
- */
-
-
-
 	
 	/**
 	 * [tFileOutputExcel_1 begin ] start
@@ -3853,7 +3561,6 @@ String[] row_tBufferOutput_1=new String[]{"","","","","","","","",};
     			nb_line_tFileOutputExcel_1++;
 				
  
-     row5 = row4;
 
 
 	tos_count_tFileOutputExcel_1++;
@@ -3881,122 +3588,6 @@ String[] row_tBufferOutput_1=new String[]{"","","","","","","","",};
 /**
  * [tFileOutputExcel_1 process_data_begin ] stop
  */
-
-	
-	/**
-	 * [tSCPPut_1 main ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tSCPPut_1";
-
-	
-
-			//row5
-			//row5
-
-
-			
-				if(execStat){
-					runStat.updateStatOnConnection("row5"+iterateId,1, 1);
-				} 
-			
-
-		
-
-	try{
-        if(sourceFileNames_tSCPPut_1!=null && sourceFileNames_tSCPPut_1.length!=0){
-           	for (int i_tSCPPut_1 = 0; i_tSCPPut_1 < sourceFileNames_tSCPPut_1.length; i_tSCPPut_1++) {
-       			java.io.File file_tSCPPut_1 = new java.io.File(sourceFileNames_tSCPPut_1[i_tSCPPut_1]);
-       			long sendSize_tSCPPut_1 = file_tSCPPut_1.length();
-       			String remoteName_tSCPPut_1 = file_tSCPPut_1.getName();
-       			java.io.OutputStream out_tSCPPut_1 = null;
-       			java.io.InputStream is_tSCPPut_1 = null;
-				byte[] buffer_tSCPPut_1 = new byte[8192];
-				int receive_tSCPPut_1 = -1;
-				try {
-					out_tSCPPut_1 = scp_tSCPPut_1.put(remoteName_tSCPPut_1, sendSize_tSCPPut_1, "/home/share", "0644");
-					is_tSCPPut_1 = new java.io.FileInputStream(file_tSCPPut_1);
-					
-    				while((receive_tSCPPut_1 = is_tSCPPut_1.read(buffer_tSCPPut_1))!=-1) {
-						out_tSCPPut_1.write(buffer_tSCPPut_1, 0, receive_tSCPPut_1);
-    				}
-				} finally {
-                	if(out_tSCPPut_1 != null){
-            			out_tSCPPut_1.close();
-                	}
-                	
-                	if(is_tSCPPut_1 != null) {
-            			is_tSCPPut_1.close();
-                	}
-				}
-           	}
-			
-            nb_file_tSCPPut_1 = sourceFileNames_tSCPPut_1.length;
-            globalMap.put("tSCPPut_1_STATUS", "File put OK.");
-        }else{
-        	globalMap.put("tSCPPut_1_STATUS", "No file transfered.");
-        }
-    }catch(java.lang.Exception e){
-    		e.printStackTrace();
-    		
-    		globalMap.put("tSCPPut_1_STATUS", "File put fail.");
-    }
-
- 
-
-
-	tos_count_tSCPPut_1++;
-
-/**
- * [tSCPPut_1 main ] stop
- */
-	
-	/**
-	 * [tSCPPut_1 process_data_begin ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tSCPPut_1";
-
-	
-
- 
-
-
-
-/**
- * [tSCPPut_1 process_data_begin ] stop
- */
-	
-	/**
-	 * [tSCPPut_1 process_data_end ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tSCPPut_1";
-
-	
-
- 
-
-
-
-/**
- * [tSCPPut_1 process_data_end ] stop
- */
-
-
-
 	
 	/**
 	 * [tFileOutputExcel_1 process_data_end ] start
@@ -4216,55 +3807,16 @@ end_Hash.put("tBufferOutput_1", System.currentTimeMillis());
 ok_Hash.put("tFileOutputExcel_1", true);
 end_Hash.put("tFileOutputExcel_1", System.currentTimeMillis());
 
+				if(execStat){   
+   	 				runStat.updateStatOnConnection("OnComponentOk2", 0, "ok");
+				}
+				tSCPPut_1Process(globalMap);
 
 
 
 /**
  * [tFileOutputExcel_1 end ] stop
  */
-
-	
-	/**
-	 * [tSCPPut_1 end ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tSCPPut_1";
-
-	
-  	
-		/* Close the connection */
-		
-        conn_tSCPPut_1.close();
-		
-	
-		globalMap.put("tSCPPut_1_NB_FILE",nb_file_tSCPPut_1);
-			
-		
-
-			if(execStat){
-				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
-			 		runStat.updateStatOnConnection("row5"+iterateId,2, 0); 
-			 	}
-			}
-		
- 
-
-ok_Hash.put("tSCPPut_1", true);
-end_Hash.put("tSCPPut_1", System.currentTimeMillis());
-
-
-
-
-/**
- * [tSCPPut_1 end ] stop
- */
-
-
-
 
 
 
@@ -4460,30 +4012,6 @@ end_Hash.put("tSCPPut_1", System.currentTimeMillis());
  * [tFileOutputExcel_1 finally ] stop
  */
 
-	
-	/**
-	 * [tSCPPut_1 finally ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tSCPPut_1";
-
-	
-
- 
-
-
-
-/**
- * [tSCPPut_1 finally ] stop
- */
-
-
-
-
 
 
 
@@ -4511,6 +4039,280 @@ end_Hash.put("tSCPPut_1", System.currentTimeMillis());
 		
 
 		globalMap.put("tFileInputExcel_1_SUBPROCESS_STATE", 1);
+	}
+	
+
+public void tSCPPut_1Process(final java.util.Map<String, Object> globalMap) throws TalendException {
+	globalMap.put("tSCPPut_1_SUBPROCESS_STATE", 0);
+
+ final boolean execStat = this.execStat;
+	
+		String iterateId = "";
+	
+	
+	String currentComponent = "";
+	java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
+
+	try {
+			// TDI-39566 avoid throwing an useless Exception
+			boolean resumeIt = true;
+			if (globalResumeTicket == false && resumeEntryMethodName != null) {
+				String currentMethodName = new java.lang.Exception().getStackTrace()[0].getMethodName();
+				resumeIt = resumeEntryMethodName.equals(currentMethodName);
+			}
+			if (resumeIt || globalResumeTicket) { //start the resume
+				globalResumeTicket = true;
+
+
+
+
+
+	
+	/**
+	 * [tSCPPut_1 begin ] start
+	 */
+
+	
+
+	
+		
+		ok_Hash.put("tSCPPut_1", false);
+		start_Hash.put("tSCPPut_1", System.currentTimeMillis());
+		
+	
+	currentComponent="tSCPPut_1";
+
+	
+		int tos_count_tSCPPut_1 = 0;
+		
+
+ 
+	int nb_file_tSCPPut_1 = 0;
+	globalMap.put("tSCPPut_1_STATUS", "");
+    /* Create a connection instance */
+	
+	    String hostname_tSCPPut_1 = "172.16.0.202";
+	    String username_tSCPPut_1 = "dnsoft";
+			ch.ethz.ssh2.Connection conn_tSCPPut_1 = new ch.ethz.ssh2.Connection(hostname_tSCPPut_1,22);
+              /* Now connect */
+		
+        conn_tSCPPut_1.connect();
+		
+			
+			
+             
+	final String decryptedPassword_tSCPPut_1 = routines.system.PasswordEncryptUtil.decryptPassword("6450f62e41c7c4af");
+			
+			
+        	boolean isAuthenticated_tSCPPut_1 = conn_tSCPPut_1.authenticateWithPassword(username_tSCPPut_1, decryptedPassword_tSCPPut_1);
+        	if (isAuthenticated_tSCPPut_1 == false){
+            	throw new RuntimeException("Authentication failed.");
+        	}
+			
+        ch.ethz.ssh2.SCPClient scp_tSCPPut_1 = new  ch.ethz.ssh2.SCPClient(conn_tSCPPut_1);
+		
+        java.util.List<String> sourceList_tSCPPut_1 = new java.util.ArrayList<String>();
+			if((new java.io.File("/var/lib/jenkins/workspace/TestUploadFile/OutDataTest.xls").exists()) 
+			&& (new java.io.File("/var/lib/jenkins/workspace/TestUploadFile/OutDataTest.xls").isFile())){
+				sourceList_tSCPPut_1.add("/var/lib/jenkins/workspace/TestUploadFile/OutDataTest.xls");
+			}else{
+        }   
+		String[] sourceFileNames_tSCPPut_1 = new String[sourceList_tSCPPut_1.size()];
+        for(int i_tSCPPut_1 = 0;i_tSCPPut_1 < sourceList_tSCPPut_1.size(); i_tSCPPut_1++){
+        	sourceFileNames_tSCPPut_1[i_tSCPPut_1] = sourceList_tSCPPut_1.get(i_tSCPPut_1);
+        }
+
+ 
+
+
+
+/**
+ * [tSCPPut_1 begin ] stop
+ */
+	
+	/**
+	 * [tSCPPut_1 main ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tSCPPut_1";
+
+	
+
+	try{
+        if(sourceFileNames_tSCPPut_1!=null && sourceFileNames_tSCPPut_1.length!=0){
+           	for (int i_tSCPPut_1 = 0; i_tSCPPut_1 < sourceFileNames_tSCPPut_1.length; i_tSCPPut_1++) {
+       			java.io.File file_tSCPPut_1 = new java.io.File(sourceFileNames_tSCPPut_1[i_tSCPPut_1]);
+       			long sendSize_tSCPPut_1 = file_tSCPPut_1.length();
+       			String remoteName_tSCPPut_1 = file_tSCPPut_1.getName();
+       			java.io.OutputStream out_tSCPPut_1 = null;
+       			java.io.InputStream is_tSCPPut_1 = null;
+				byte[] buffer_tSCPPut_1 = new byte[8192];
+				int receive_tSCPPut_1 = -1;
+				try {
+					out_tSCPPut_1 = scp_tSCPPut_1.put(remoteName_tSCPPut_1, sendSize_tSCPPut_1, "/home/share", "0644");
+					is_tSCPPut_1 = new java.io.FileInputStream(file_tSCPPut_1);
+					
+    				while((receive_tSCPPut_1 = is_tSCPPut_1.read(buffer_tSCPPut_1))!=-1) {
+						out_tSCPPut_1.write(buffer_tSCPPut_1, 0, receive_tSCPPut_1);
+    				}
+				} finally {
+                	if(out_tSCPPut_1 != null){
+            			out_tSCPPut_1.close();
+                	}
+                	
+                	if(is_tSCPPut_1 != null) {
+            			is_tSCPPut_1.close();
+                	}
+				}
+           	}
+			
+            nb_file_tSCPPut_1 = sourceFileNames_tSCPPut_1.length;
+            globalMap.put("tSCPPut_1_STATUS", "File put OK.");
+        }else{
+        	globalMap.put("tSCPPut_1_STATUS", "No file transfered.");
+        }
+    }catch(java.lang.Exception e){
+    		e.printStackTrace();
+    		
+    		globalMap.put("tSCPPut_1_STATUS", "File put fail.");
+    }
+
+ 
+
+
+	tos_count_tSCPPut_1++;
+
+/**
+ * [tSCPPut_1 main ] stop
+ */
+	
+	/**
+	 * [tSCPPut_1 process_data_begin ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tSCPPut_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tSCPPut_1 process_data_begin ] stop
+ */
+	
+	/**
+	 * [tSCPPut_1 process_data_end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tSCPPut_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tSCPPut_1 process_data_end ] stop
+ */
+	
+	/**
+	 * [tSCPPut_1 end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tSCPPut_1";
+
+	
+  	
+		/* Close the connection */
+		
+        conn_tSCPPut_1.close();
+		
+	
+		globalMap.put("tSCPPut_1_NB_FILE",nb_file_tSCPPut_1);
+			
+		
+
+ 
+
+ok_Hash.put("tSCPPut_1", true);
+end_Hash.put("tSCPPut_1", System.currentTimeMillis());
+
+
+
+
+/**
+ * [tSCPPut_1 end ] stop
+ */
+				}//end the resume
+
+				
+
+
+
+	
+			}catch(java.lang.Exception e){	
+				
+				TalendException te = new TalendException(e, currentComponent, globalMap);
+				
+				throw te;
+			}catch(java.lang.Error error){	
+				
+					runStat.stopThreadStat();
+				
+				throw error;
+			}finally{
+				
+				try{
+					
+	
+	/**
+	 * [tSCPPut_1 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tSCPPut_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tSCPPut_1 finally ] stop
+ */
+				}catch(java.lang.Exception e){	
+					//ignore
+				}catch(java.lang.Error error){
+					//ignore
+				}
+				resourceMap = null;
+			}
+		
+
+		globalMap.put("tSCPPut_1_SUBPROCESS_STATE", 1);
 	}
 	
 
@@ -7698,6 +7500,6 @@ if (execStat) {
     ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- *     186605 characters generated by Talend Open Studio for Data Integration 
- *     on the 2019/06/19 18:22:51 JST
+ *     182839 characters generated by Talend Open Studio for Data Integration 
+ *     on the 2019/06/19 18:32:59 JST
  ************************************************************************************************/
