@@ -456,7 +456,7 @@
     <elementParameter field="PASSWORD" name="PASSPHRASE" value="wiXuUBxiyoc5L4zXsOuoEQ==" show="false"/>
     <elementParameter field="DIRECTORY" name="REMOTEDIR" value="&quot;/home/share&quot;"/>
     <elementParameter field="TABLE" name="FILELIST">
-      <elementValue elementRef="SOURCE" value="&quot;/var/lib/jenkins/workspace/TestUploadFile/OutDataTest.xls&quot;"/>
+      <elementValue elementRef="SOURCE" value="&quot;OutDataTest.xls&quot;"/>
     </elementParameter>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="denornalize" name="tSCPPut_1">
