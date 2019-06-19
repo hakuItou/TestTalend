@@ -145,7 +145,7 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileFetch_1"/>
   </node>
-  <node componentName="tFileInputExcel" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="192">
+  <node componentName="tFileInputExcel" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputExcel_1" show="false"/>
     <elementParameter field="CHECK" name="VERSION_2007" value="true"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;/var/lib/jenkins/workspace/TestUploadFile/test_output_to_fileServer_0.1/Book1.xlsx&quot;"/>
@@ -256,7 +256,7 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="160" posY="192">
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="192" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_1" show="false"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
@@ -331,7 +331,7 @@
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tDenormalize" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="192">
+  <node componentName="tDenormalize" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDenormalize_1" show="false"/>
     <elementParameter field="TABLE" name="DENORMALIZE_COLUMNS">
       <elementValue elementRef="INPUT_COLUMN" value="F"/>
@@ -356,7 +356,7 @@
       <column comment="" key="false" length="-1" name="I" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="384" posY="192">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_1" show="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="// code sample:&#xA;//&#xA;// multiply by 2 the row identifier&#xA;// output_row.id = input_row.id * 2;&#xA;//&#xA;// lowercase the name&#xA;// output_row.name = input_row.name.toLowerCase();&#xA;//System.out.println(input_row);&#xA;&#xA;output_row.B = input_row.B;&#xA;output_row.C = input_row.C;&#xA;output_row.D = input_row.D;&#xA;output_row.E = input_row.E;&#xA;&#xA;&#xA;String[] fArray = input_row.F.split(&quot;;&quot;);&#xA;String[] gArray = input_row.G.split(&quot;;&quot;);&#xA;String[] iArray = input_row.I.split(&quot;;&quot;);&#xA;&#xA;ArrayList&lt;String> attributeList = new ArrayList&lt;String>();&#xA;ArrayList&lt;String> attributeValueList = new ArrayList&lt;String>();&#xA;int index = 0;&#xA;for(String fStr : fArray){&#xA;  if(fStr.equals(&quot;個別設定項目&quot;)){&#xA;    if(gArray[index] != null &amp;&amp; gArray[index].equals(&quot;プロジェクト&quot;)){&#xA;      output_row.project = iArray[index];&#xA;    }else if(gArray[index] != null &amp;&amp; gArray[index].equals(&quot;トラッカー種別&quot;)){&#xA;      output_row.tracker = iArray[index];&#xA;    }&#xA;  }else if(fStr.equals(&quot;属性&quot;)){&#xA;  &#x9;attributeList.add(gArray[index]);&#xA;  &#x9;attributeValueList.add(iArray[index]);&#xA;  }&#xA;  &#xA;  index++;&#xA;}&#xA;output_row.attributes = attributeList.toString();&#xA;output_row.attributeValues = attributeValueList.toString();&#xA;&#xA;//System.out.println(output_row);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="import java.util.List;&#xA;import java.util.ArrayList;&#xA;"/>
@@ -372,7 +372,7 @@
       <column comment="" key="false" length="-1" name="attributeValues" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tBufferOutput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="192">
+  <node componentName="tBufferOutput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tBufferOutput_1" show="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="denornalize" name="tBufferOutput_1">
@@ -386,7 +386,7 @@
       <column comment="" key="false" length="-1" name="attributeValues" nullable="false" originalDbColumnName="attribute_values" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileOutputExcel" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="160">
+  <node componentName="tFileOutputExcel" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileOutputExcel_1" show="false"/>
     <elementParameter field="CHECK" name="VERSION_2007" value="true"/>
     <elementParameter field="CHECK" name="USESTREAM" value="false"/>
@@ -443,7 +443,7 @@
       <column comment="" key="false" length="-1" name="attributeValues" nullable="false" originalDbColumnName="attribute_values" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tSCPPut" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="256">
+  <node componentName="tSCPPut" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="736" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSCPPut_1" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
@@ -456,7 +456,7 @@
     <elementParameter field="PASSWORD" name="PASSPHRASE" value="wiXuUBxiyoc5L4zXsOuoEQ==" show="false"/>
     <elementParameter field="DIRECTORY" name="REMOTEDIR" value="&quot;/home/share&quot;"/>
     <elementParameter field="TABLE" name="FILELIST">
-      <elementValue elementRef="SOURCE" value="&quot;OutDataTest.xls&quot;"/>
+      <elementValue elementRef="SOURCE" value="&quot;/var/lib/jenkins/workspace/TestUploadFile/OutDataTest.xls&quot;"/>
     </elementParameter>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="denornalize" name="tSCPPut_1">
